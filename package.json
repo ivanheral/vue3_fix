@@ -1,0 +1,16 @@
+{
+  "name": "vue3_fix",
+  "version": "1.0.0",
+  "description": "vue3_fix",
+  "scripts": {
+    "dev": "npx servor --reload"
+  },
+  "author": "ivanheral <ivanhernandezal@gmail.com>",
+  "keywords": [
+    "modules", "vue3", "vue", "htm"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+  }
+}
