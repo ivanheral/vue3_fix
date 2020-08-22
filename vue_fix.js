@@ -7445,25 +7445,26 @@ function createInnerComp(comp, {
 
 // Actual implementation
 function h(type, propsOrChildren, children) {
-    if (arguments.length > 3) {
-        return createVNode(type, propsOrChildren, Array.from(arguments).slice(2));
-    } else if (arguments.length === 2) {
-        if (isObject(propsOrChildren) && !isArray(propsOrChildren)) {
-            // single vnode without props
-            if (isVNode(propsOrChildren)) {
-                return createVNode(type, null, [propsOrChildren]);
-            }
-            // props without children
-            return createVNode(type, propsOrChildren);
-        } else {
-            // omit props
-            return createVNode(type, null, propsOrChildren);
+    const l = arguments.length
+    if (l === 2) {
+      if (isObject(propsOrChildren) && !isArray(propsOrChildren)) {
+        // single vnode without props
+        if (isVNode(propsOrChildren)) {
+          return createVNode(type, null, [propsOrChildren])
         }
+        // props without children
+        return createVNode(type, propsOrChildren)
+      } else {
+        // omit props
+        return createVNode(type, null, propsOrChildren)
+      }
     } else {
-        if (isVNode(children)) {
-            children = [children];
-        }
-        return createVNode(type, propsOrChildren, children);
+      if (l > 3) {
+        children = Array.prototype.slice.call(arguments, 2)
+      } else if (l === 3 && isVNode(children)) {
+        children = [children]
+      }
+      return createVNode(type, propsOrChildren, children)
     }
 }
 
